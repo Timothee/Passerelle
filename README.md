@@ -22,3 +22,11 @@ and with some way to insure you're you and not anybody. Still TBD, but
 I'd probably have a secret key set as environment variable that the
 JavaScript client would also know and bim bam boom, we have something to
 compare.
+
+
+License
+---
+
+This code is provided under the MIT License.
+
+(c) 2013 Timothée Boucher - timotheeboucher.com
