@@ -38,7 +38,6 @@ class PasserelleTestCase(unittest.TestCase):
 		wrong_urls = ['host.com/repo',
 				'rtmp://whatisthis.com/really.git']
 		for url in correct_urls:
-			print url, passerelle.check_git_url(url)
 			assert passerelle.check_git_url(url) is True
 		for url in wrong_urls:
 			assert passerelle.check_git_url(url) is False

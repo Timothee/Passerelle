@@ -1,4 +1,5 @@
 import os
+from urlparse import urlparse
 from flask import Flask, request, Response
 
 app = Flask(__name__)
@@ -15,7 +16,26 @@ def git2git():
 	if not to_url:
 		return Response(status="400 Git 'to' URL Not Sent")
 
+	
+	
 	return Response(response="yay", status=200)
+
+def check_git_url(url):
+	''' This is a gross sanity check on git URLs
+		It doesn't cover all cases but it should filter out
+		obviously wrong URLs
+		'''
+	accepted_schemes = ['ssh', 'git', 'http', 'https', 'ftp', 'ftps',
+			'rsync', 'file']
+	if not url.endswith(('.git', '.git/')):
+		return False
+	elif url.startswith('file:///'):
+		return True
+	elif '://' in url:
+		parsed = urlparse(url)
+		return parsed.scheme in accepted_schemes and parsed.netloc != ''
+	else:
+		return True
 
 if __name__ == "__main__":
 	port = int(os.environ.get('PORT', 5000))
