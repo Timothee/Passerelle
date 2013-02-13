@@ -15,6 +15,10 @@ def git2git():
 		return Response(status="400 Git 'from' URL Not Sent")
 	if not to_url:
 		return Response(status="400 Git 'to' URL Not Sent")
+	if not check_git_url(from_url):
+		return Response(status="400 Git 'from' URL Not Acceptable")
+	if not check_git_url(to_url):
+		return Response(status="400 Git 'to' URL Not Acceptable")
 
 	
 	
